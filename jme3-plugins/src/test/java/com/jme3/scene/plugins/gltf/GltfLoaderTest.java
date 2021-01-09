@@ -2,6 +2,7 @@ package com.jme3.scene.plugins.gltf;
 
 import com.jme3.asset.AssetLoadException;
 import com.jme3.asset.AssetManager;
+import com.jme3.light.Light;
 import com.jme3.material.plugin.TestMaterialWrite;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
@@ -71,6 +72,10 @@ public class GltfLoaderTest {
             System.err.print(" / " + ((Geometry) s).getMaterial());
         }
         System.err.println();
+        for (Light light: s.getLocalLightList())
+        {
+            System.err.println(indentString.substring(0, indent + 1) + light);
+        }
         if (s instanceof Node) {
             Node n = (Node) s;
             for (Spatial spatial : n.getChildren()) {

@@ -42,7 +42,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Nehon on 20/08/2017.
+ * @author Nehon
+ * @author Markil 3
  */
 public class CustomContentManager {
 
@@ -56,6 +57,7 @@ public class CustomContentManager {
     static {
         defaultExtensionLoaders.put("KHR_materials_pbrSpecularGlossiness", new PBRSpecGlossExtensionLoader());
         defaultExtensionLoaders.put("KHR_materials_unlit", new UnlitExtensionLoader());
+        defaultExtensionLoaders.put("KHR_lights_punctual", new PunctualExtensionLoader());
     }
 
     void init(GltfLoader gltfLoader) {
