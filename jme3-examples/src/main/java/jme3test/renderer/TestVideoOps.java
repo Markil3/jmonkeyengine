@@ -63,6 +63,7 @@ public class TestVideoOps extends SimpleApplication implements ScreenController 
         AppSettings appSettings = new AppSettings(true);
         appSettings.setResizable(true);
         appSettings.setGammaCorrection(true);
+//        appSettings.setSamples(8);
         TestVideoOps app = new TestVideoOps();
         app.setShowSettings(false);
         app.setSettings(appSettings);
@@ -142,14 +143,14 @@ public class TestVideoOps extends SimpleApplication implements ScreenController 
             if (Class.forName("org.lwjgl.opengl.DisplayMode") != null) {
                 // TODO - Uncomment on LWJGL 2
                 maxSize = new int[2];
-//                maxSize[0] = org.lwjgl.opengl.Display.getDesktopDisplayMode().getWidth();
-//                maxSize[1] = org.lwjgl.opengl.Display.getDesktopDisplayMode().getHeight();
+                maxSize[0] = org.lwjgl.opengl.Display.getDesktopDisplayMode().getWidth();
+                maxSize[1] = org.lwjgl.opengl.Display.getDesktopDisplayMode().getHeight();
             }
         } catch (ClassNotFoundException e) {
             try {
                 if (Class.forName("org.lwjgl.glfw.GLFW") != null) {
                     // TODO - Uncomment on LWJGL 3
-                    maxSize = Optional.of(org.lwjgl.glfw.GLFW.glfwGetVideoMode(org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor())).map(mode -> new int[]{mode.width(), mode.height()}).get();
+//                    maxSize = Optional.of(org.lwjgl.glfw.GLFW.glfwGetVideoMode(org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor())).map(mode -> new int[]{mode.width(), mode.height()}).get();
                 }
             } catch (ClassNotFoundException e1) {
 
@@ -181,12 +182,12 @@ public class TestVideoOps extends SimpleApplication implements ScreenController 
         try {
             if (Class.forName("org.lwjgl.opengl.DisplayMode") != null) {
                 // TODO - Uncomment on LWJGL 2
-//                try {
-//                    fullscreenResolutions = Arrays.stream(org.lwjgl.opengl.Display.getAvailableDisplayModes()).map(mode -> new int[]{mode.getWidth(), mode.getHeight()}).toArray(int[][]::new);
-//                } catch (org.lwjgl.LWJGLException e) {
-//                    e.printStackTrace();
-//                    fullscreenResolutions = new int[0][2];
-//                }
+                try {
+                    fullscreenResolutions = Arrays.stream(org.lwjgl.opengl.Display.getAvailableDisplayModes()).map(mode -> new int[]{mode.getWidth(), mode.getHeight()}).toArray(int[][]::new);
+                } catch (org.lwjgl.LWJGLException e) {
+                    e.printStackTrace();
+                    fullscreenResolutions = new int[0][2];
+                }
             }
         } catch (ClassNotFoundException e) {
             // Only the full resolution is supported on LWJGL 3
@@ -384,34 +385,34 @@ public class TestVideoOps extends SimpleApplication implements ScreenController 
         try {
             if (Class.forName("org.lwjgl.opengl.DisplayMode") != null) {
                 // TODO - Uncomment on LWJGL2
-//                try {
-//                    org.lwjgl.opengl.DisplayMode[] modes = org.lwjgl.opengl.Display.getAvailableDisplayModes();
-//                    Arrays.sort(modes, (mode1, mode2) -> mode1.getWidth() == selection[0] && mode1.getHeight() == selection[1] && mode2.getWidth() != selection[0] && mode2.getHeight() != selection[1] ? -1 : (mode1.getWidth() != selection[0] && mode1.getHeight() != selection[1] && mode2.getWidth() == selection[0] && mode2.getHeight() == selection[1] ? 1 : 0));
-//                    for (org.lwjgl.opengl.DisplayMode mode : modes) {
-//                        if (mode.getWidth() != selection[0] || mode.getHeight() != selection[1]) {
-//                            frequency = mode.getFrequency();
-//                            if (frequency == 59) {
-//                                frequency = 60;
-//                            }
-//                            if (mode.getBitsPerPixel() >= 16 || mode.getBitsPerPixel() <= 0 && !depths.getItems().contains(mode.getBitsPerPixel())) {
-//                                depths.addItem(mode.getBitsPerPixel());
-//                                if (settings.getBitsPerPixel() == mode.getBitsPerPixel()) {
-//                                    depths.selectItemByIndex(depths.itemCount() - 1);
-//                                }
-//                            }
-//                            if (!refreshRates.getItems().contains(frequency)) {
-//                                refreshRates.addItem(frequency);
-//                                if (settings.getFrequency() == frequency) {
-//                                    refreshRates.selectItemByIndex(refreshRates.itemCount() - 1);
-//                                }
-//                            }
-//                            // We've gone through all the valid modes
-//                            break;
-//                        }
-//                    }
-//                } catch (org.lwjgl.LWJGLException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    org.lwjgl.opengl.DisplayMode[] modes = org.lwjgl.opengl.Display.getAvailableDisplayModes();
+                    Arrays.sort(modes, (mode1, mode2) -> mode1.getWidth() == selection[0] && mode1.getHeight() == selection[1] && mode2.getWidth() != selection[0] && mode2.getHeight() != selection[1] ? -1 : (mode1.getWidth() != selection[0] && mode1.getHeight() != selection[1] && mode2.getWidth() == selection[0] && mode2.getHeight() == selection[1] ? 1 : 0));
+                    for (org.lwjgl.opengl.DisplayMode mode : modes) {
+                        if (mode.getWidth() != selection[0] || mode.getHeight() != selection[1]) {
+                            frequency = mode.getFrequency();
+                            if (frequency == 59) {
+                                frequency = 60;
+                            }
+                            if (mode.getBitsPerPixel() >= 16 || mode.getBitsPerPixel() <= 0 && !depths.getItems().contains(mode.getBitsPerPixel())) {
+                                depths.addItem(mode.getBitsPerPixel());
+                                if (settings.getBitsPerPixel() == mode.getBitsPerPixel()) {
+                                    depths.selectItemByIndex(depths.itemCount() - 1);
+                                }
+                            }
+                            if (!refreshRates.getItems().contains(frequency)) {
+                                refreshRates.addItem(frequency);
+                                if (settings.getFrequency() == frequency) {
+                                    refreshRates.selectItemByIndex(refreshRates.itemCount() - 1);
+                                }
+                            }
+                            // We've gone through all the valid modes
+                            break;
+                        }
+                    }
+                } catch (org.lwjgl.LWJGLException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (ClassNotFoundException e) {
 
@@ -509,25 +510,25 @@ public class TestVideoOps extends SimpleApplication implements ScreenController 
      */
     @NiftyEventSubscriber(id = "apply")
     public void apply(String id, final ButtonClickedEvent event) {
-        this.applyFullscreen();
-        DropDown antialias = this.nifty.getCurrentScreen().findNiftyControl("antialias", DropDown.class);
-        DropDown vsync = this.nifty.getCurrentScreen().findNiftyControl("vsync", DropDown.class);
-        this.settings.setSamples((Integer) antialias.getSelection());
-        switch ((Integer) vsync.getSelection()) {
-            case -1:
-                this.settings.setVSync(false);
-                this.settings.setFrameRate(-1);
-                break;
-            case 0:
-                this.settings.setVSync(true);
-                this.settings.setFrameRate(-1);
-                break;
-            default:
-                this.settings.setVSync(false);
-                this.settings.setFrameRate((Integer) vsync.getSelection());
-                break;
-        }
-        this.settings.setGammaCorrection(true);
+//        this.applyFullscreen();
+//        DropDown antialias = this.nifty.getCurrentScreen().findNiftyControl("antialias", DropDown.class);
+//        DropDown vsync = this.nifty.getCurrentScreen().findNiftyControl("vsync", DropDown.class);
+//        this.settings.setSamples((Integer) antialias.getSelection());
+//        switch ((Integer) vsync.getSelection()) {
+//            case -1:
+//                this.settings.setVSync(false);
+//                this.settings.setFrameRate(-1);
+//                break;
+//            case 0:
+//                this.settings.setVSync(true);
+//                this.settings.setFrameRate(-1);
+//                break;
+//            default:
+//                this.settings.setVSync(false);
+//                this.settings.setFrameRate((Integer) vsync.getSelection());
+//                break;
+//        }
+//        this.settings.setGammaCorrection(true);
         this.getContext().restart();
         /**
          * Reset the nifty renderer
