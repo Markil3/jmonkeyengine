@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty>
+    <!-- include the style file for the standard controls -->
+    <useStyles filename="nifty-default-styles.xml" />
+    <!-- include the standard controls -->
+    <useControls filename="nifty-default-controls.xml" />
+    <screen controller="jme3test.renderer.TestVideoOps" id="start">
+        <layer backgroundColor="#0000" childLayout="center" id="layer">
+            <panel style="nifty-panel" align="center" childLayout="vertical"
+                height="58%" id="dialog" padding="18px,28px,28px,16px" valign="center"
+                width="55%">
+                <effect>
+                    <onStartScreen name="move" direction="top" factor="3.5" inherit="true" length="500"
+                        mode="in" timeType="exp" />
+                    <onEndScreen name="move" direction="bottom" factor="3.5" inherit="true"
+                        length="500" mode="out" timeType="exp" />
+                </effect>
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" text="Fullscreen: " textHAlign="left"
+                        textVAlign="center" width="120px" />
+                    <control name="checkbox" checked="false" id="fullscreen" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" text="Borderless: " textHAlign="left"
+                        textVAlign="center" width="120px" />
+                    <control name="checkbox" checked="false" id="borderless" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" id="resolutionLabel" text="Resolution: "
+                        textHAlign="left" textVAlign="center" width="120px" />
+                    <control name="dropDown" id="resolutions" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" id="bitDepthLabel" text="Color Depth: "
+                        textHAlign="left" textVAlign="center" width="120px" />
+                    <control name="dropDown" id="bitDepths" />
+                    <text style="nifty-label" align="left" text="bpp" textHAlign="left"
+                        textVAlign="center" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" id="refreshLabel" text="Refresh Rate: "
+                        textHAlign="left" textVAlign="center" width="120px" />
+                    <control name="dropDown" id="refreshRates" />
+                    <text style="nifty-label" align="left" text="Hz" textHAlign="left"
+                        textVAlign="center" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" text="Antialiasing: " textHAlign="left"
+                        textVAlign="center" width="120px" />
+                    <control name="dropDown" id="antialias" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" text="Maximum Framerate: " textHAlign="left"
+                        textVAlign="center" width="120px" />
+                    <control name="dropDown" id="vsync" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" text="HDR: " textHAlign="left"
+                        textVAlign="center" width="120px" />
+                    <control name="horizontalSlider" id="hdr" value="1" min="-1" max="44" buttonStepSize="1" />
+                    <text id="hdrIndicator" style="nifty-label" align="left" text="Off" textHAlign="left"
+                        textVAlign="center" width="40px" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel childLayout="horizontal">
+                    <text style="nifty-label" align="left" text="Field of View: " textHAlign="left"
+                        textVAlign="center" width="120px" />
+                    <control name="horizontalSlider" id="fov" min="30" max="120" stepSize="1" buttonStepSize="1" />
+                    <text id="fovIndicator" style="nifty-label" align="left" text="120&#x00b0;" textHAlign="left"
+                        textVAlign="center" width="40px" />
+                </panel>
+                <panel childLayout="horizontal" height="8px" />
+                <panel align="center" childLayout="horizontal">
+                    <control name="button" label="Apply" align="center" id="apply" textHAlign="center"/>
+                </panel>
+            </panel>
+        </layer>
+    </screen>
+</nifty>
